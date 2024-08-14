@@ -1,0 +1,2 @@
+# contain service file and test file of service name cua. E.g.: cua-employee-service
+# naming convention: cua-employee.service.ts / cua-employee.service.spec.ts / cua-employee.model.ts
