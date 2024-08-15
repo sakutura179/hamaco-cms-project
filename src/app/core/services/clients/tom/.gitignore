@@ -1,0 +1,2 @@
+# contain service file and test file of service name tom. E.g.: tom-task-service
+# naming convention: tom-task.service.ts / tom-task.service.spec.ts / tom-task.model.ts
