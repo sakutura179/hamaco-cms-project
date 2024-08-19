@@ -2,10 +2,10 @@
   <div class="form-wrapper">
     <img class="logo-img" src="assets/angular_wordmark_gradient.png" alt="logo">
     @if(currentMode == 'LOGIN') {
-    <!-- <app-login-form /> -->
+    <app-login-form />
     }
     @else {
-    <!-- <app-forget-password-form /> -->
+    <app-forget-password-form />
     }
 
     <button (click)="changeMode()" class="forgot-pw">

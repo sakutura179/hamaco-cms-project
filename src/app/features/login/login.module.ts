@@ -4,10 +4,12 @@ import { ForgetPasswordFormComponent } from "./forget-password-form/forget-passw
 import { FormsModule } from "@angular/forms";
 import { InputComponent } from "../../shared/components/input/input.component";
 import { LoginRoutingModule } from "./login-routing.module";
+import { LoginComponent } from "./login.component";
 
 
 @NgModule({
   declarations: [
+    LoginComponent,
     LoginFormComponent,
     ForgetPasswordFormComponent
   ],
