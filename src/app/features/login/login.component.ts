@@ -6,12 +6,12 @@ import { ForgetPasswordFormComponent } from './forget-password-form/forget-passw
 
 @Component({
   selector: 'app-login',
-  standalone: true,
-  imports: [
-    FormsModule,
-    LoginFormComponent,
-    ForgetPasswordFormComponent
-  ],
+  // standalone: true,
+  // imports: [
+  //   FormsModule,
+  //   LoginFormComponent,
+  //   ForgetPasswordFormComponent
+  // ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
