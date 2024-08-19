@@ -1,0 +1,20 @@
+<div class="content-wrapper">
+  <div class="form-wrapper">
+    <img class="logo-img" src="assets/angular_wordmark_gradient.png" alt="logo">
+    @if(currentMode == 'LOGIN') {
+    <app-login-form />
+    }
+    @else {
+    <app-forget-password-form />
+    }
+
+    <button (click)="changeMode()" class="forgot-pw">
+      @if(currentMode == 'LOGIN') {
+      Forgot Password?
+      }
+      @else {
+      Back to Login
+      }
+    </button>
+  </div>
+</div>
