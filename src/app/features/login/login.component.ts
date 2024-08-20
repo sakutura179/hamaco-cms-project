@@ -1,29 +1,24 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { InputComponent } from '../../shared/components/input/input.component';
-import { LoginFormComponent } from './login-form/login-form.component';
-import { ForgetPasswordFormComponent } from './forget-password-form/forget-password-form.component';
-
+import { Component, inject } from '@angular/core';
+import { LoadingService } from '../../shared/components/loading/loading.service';
 @Component({
   selector: 'app-login',
-  // standalone: true,
-  // imports: [
-  //   FormsModule,
-  //   LoginFormComponent,
-  //   ForgetPasswordFormComponent
-  // ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+  private loadingService = inject(LoadingService);
   currentMode: 'LOGIN' | 'FORGOT' = 'LOGIN';
 
   changeMode() {
+    this.loadingService.show();
     if (this.currentMode == 'LOGIN') {
       this.currentMode = 'FORGOT';
     } else {
       this.currentMode = 'LOGIN';
     }
+    setTimeout(() => {
+      this.loadingService.hide();
+    }, 200);
   }
 
 }

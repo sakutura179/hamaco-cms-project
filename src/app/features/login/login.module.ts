@@ -5,6 +5,7 @@ import { FormsModule } from "@angular/forms";
 import { InputComponent } from "../../shared/components/input/input.component";
 import { LoginRoutingModule } from "./login-routing.module";
 import { LoginComponent } from "./login.component";
+import { LoadingComponent } from "../../shared/components/loading/loading.component";
 
 
 @NgModule({
@@ -16,8 +17,9 @@ import { LoginComponent } from "./login.component";
   imports: [
     FormsModule,
     InputComponent,
-    LoginRoutingModule
+    LoginRoutingModule,
+    LoadingComponent
   ]
 })
 
-export class LoginModule {}
+export class LoginModule { }
