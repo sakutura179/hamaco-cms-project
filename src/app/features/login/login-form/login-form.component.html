@@ -1,16 +1,16 @@
-<form (ngSubmit)="onSubmit()">
+<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
   <app-input label="Email or Username">
-    <input placeholder="Email or Username" name="email" id="email" type="text" #input [(ngModel)]="username">
+    <input placeholder="Email or Username" name="email" id="email" type="text" #input ngModel required>
   </app-input>
 
   <app-input label="Password">
-    <input placeholder="Password" name="password" id="password" type="password" #input [(ngModel)]="password">
+    <input placeholder="Password" name="password" id="password" type="password" #input ngModel required>
     <div class="icon" #icon>
       <img src="assets/eye-regular.svg" alt="icon">
     </div>
   </app-input>
 
-  <button type="submit" class="submit-btn" [disabled]="(!username || !password)">
+  <button type="submit" class="submit-btn" [disabled]="loginForm.form.invalid">
     Sign in
   </button>
 </form>
