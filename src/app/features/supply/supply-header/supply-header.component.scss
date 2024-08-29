@@ -1,0 +1,25 @@
+.supply-header {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+
+  .filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+
+    .f-item {
+      .label {
+        font-weight: 600;
+        color: #495049;
+        margin-bottom: 6px;
+      }
+
+      ul {
+        margin: 0;
+        padding: 8px;
+      }
+    }
+  }
+}

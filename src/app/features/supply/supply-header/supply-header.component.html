@@ -1,0 +1,61 @@
+<div class="supply-header">
+  <div class="filter">
+    <div class="f-item">
+      <div class="label">Từ ngày</div>
+      <p-calendar
+        [(ngModel)]="startDate"
+        dateFormat="dd/mm/yy" />
+    </div>
+    <div class="f-item">
+      <div class="label">Đến ngày</div>
+      <p-calendar
+        [(ngModel)]="endDate"
+        dateFormat="dd/mm/yy" />
+    </div>
+    <div class="f-item">
+      <div class="label">Trạng thái</div>
+      <p-dropdown
+        [options]="statuses"
+        optionLabel="name"
+        optionValue="id"
+        (onChange)="onFilterItemChanged(actions.FILTER, $event, supplyField.STATUS)"
+        placeholder="Lọc theo trạng thái"/>
+    </div>
+    <div class="f-item">
+      <div class="label">Đơn vị sử dụng</div>
+      <p-dropdown
+        [options]="departments"
+        optionLabel="name"
+        optionValue="id"
+        (onChange)="onFilterItemChanged(actions.FILTER, $event, supplyField.DEPARTMENT)"
+        placeholder="Lọc theo đơn vị"/>
+    </div>
+    <div class="f-item">
+      <div class="label">Người tạo</div>
+      <p-dropdown
+        [options]="users"
+        optionLabel="fullname"
+        optionValue="id"
+        (onChange)="onFilterItemChanged(actions.FILTER, $event, supplyField.CREATOR)"
+        placeholder="Lọc theo người tạo"/>
+    </div>
+    <div class="f-item">
+      <div class="label">Nguồn</div>
+      <p-dropdown
+        [options]="sources"
+        optionLabel="name"
+        optionValue="id"
+        (onChange)="onFilterItemChanged(actions.FILTER, $event, supplyField.SOURCE)"
+        placeholder="Lọc theo nguồn"/>
+    </div>
+    <div class="f-item">
+      <div class="label">Thành tiền</div>
+      <p-dropdown
+        [options]="sortOptions"
+        optionLabel="name"
+        optionValue="id"
+        (onChange)="onFilterItemChanged(actions.SORT, $event, supplyField.AMOUNT)"
+        placeholder="Sắp xếp"/>
+    </div>
+  </div>
+</div>
