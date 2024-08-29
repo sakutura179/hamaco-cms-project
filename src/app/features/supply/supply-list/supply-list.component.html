@@ -1,0 +1,30 @@
+<div class="supply-table table">
+  <p-table [value]="supplies">
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="wi-80">Mã phiếu</th>
+        <th>Ngày tạo</th>
+        <th>Trạng thái</th>
+        <th>Đơn vị sử dụng</th>
+        <th>Nội dung</th>
+        <th class="amount">Thành tiền</th>
+        <th>Người tạo</th>
+        <th>Người duyệt</th>
+        <th>Nguồn</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-supply>
+      <tr>
+        <td class="wi-80">{{ supply.id }}</td>
+        <td>{{ supply.created_date | date:'d/M/YYYY' }}</td>
+        <td class="status-{{ supply.status.id }}">{{ supply.status.name }}</td>
+        <td>{{ supply.department.name }}</td>
+        <td class="text-left">{{ supply.title }}</td>
+        <td class="amount">{{ supply.amount | number }}đ</td>
+        <td>{{ supply.creator.fullname }}</td>
+        <td>{{ supply.reviewer?.fullname ?? '---' }}</td>
+        <td>{{ supply.source.name }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

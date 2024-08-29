@@ -20,6 +20,11 @@ img {
   object-fit: contain;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+}
+
 button {
   background-color: unset;
   border: none;
@@ -40,4 +45,9 @@ button {
       opacity: .5;
     }
   }
+}
+
+.p-focus,
+.p-focus > .p-inputtext {
+  box-shadow: unset;
 }
