@@ -13,7 +13,7 @@ import { Sort } from '../../../shared/models/data.model';
   styleUrl: './supply-header.component.scss'
 })
 export class SupplyHeaderComponent implements OnInit {
-  @Output() filterChanged = new EventEmitter<{
+  @Output() criteriaChanged = new EventEmitter<{
     action: string,
     field: string,
     value: number | string
@@ -55,6 +55,6 @@ export class SupplyHeaderComponent implements OnInit {
       field,
       value: event.value
     }
-    this.filterChanged.emit(params);
+    this.criteriaChanged.emit(params);
   }
 }
