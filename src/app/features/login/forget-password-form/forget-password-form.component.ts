@@ -1,27 +1,18 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-forget-password-form',
-  // standalone: true,
-  // imports: [
-  //   FormsModule,
-  //   InputComponent,
-  // ],
   templateUrl: './forget-password-form.component.html',
   styleUrl: './forget-password-form.component.scss'
 })
 export class ForgetPasswordFormComponent {
-  username = '';
-  newPassword = '';
-  confirmPassword = '';
 
-  onSubmit() {
+  onSubmit(formData: NgForm) {
     console.log('ForgetPasswordFormComponent Submit');
-    console.log(this.username);
-    console.log(this.newPassword);
-  }
-
-  test() {
-    console.log(123);
+    console.log(formData.form.value['email']);
+    console.log(formData.form.value['new-password']);
+    console.log(formData.form.value['confirm-password']);
+    formData.form.reset();
   }
 }
