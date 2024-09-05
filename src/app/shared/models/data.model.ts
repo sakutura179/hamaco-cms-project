@@ -32,6 +32,14 @@ export interface Supply {
   source: Source
 }
 
+export interface Product {
+  id: number,
+  source_id: number,
+  name: string,
+  unit: string,
+  price: number
+}
+
 export interface Sort {
   id: string,
   name: string
