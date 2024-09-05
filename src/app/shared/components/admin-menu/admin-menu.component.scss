@@ -1,0 +1,45 @@
+.menu-wrapper {
+  height: 100vh;
+  padding: 20px 0;
+  background-color: #1d2327;
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+
+  .menu-item {
+    padding: 10px 20px;
+    color: #FFF;
+    font-weight: 600;
+    border-left: 4px solid transparent;
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+      color: #72aee6;
+      border-color: #72aee6;
+    }
+
+    &.active {
+      background: #2271b1;
+      color: #fff;
+
+
+      &:hover {
+        border-color: transparent;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 12px;
+        width: 0;
+        height: 0;
+        border-top: 8px solid transparent;
+        border-right: 12px solid #FFF;
+        border-bottom: 8px solid transparent;
+      }
+    }
+  }
+}
