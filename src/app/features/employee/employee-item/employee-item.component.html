@@ -1,0 +1,16 @@
+<a class="u-item d-flex" [routerLink]="[user().id + '/edit']" routerLinkActive="active">
+  <div class="info">
+    <div class="fs-16 fw-600 text-black">
+      {{ user().fullname }}
+      <span class="text-black">
+        ({{ user().username }})
+      </span>
+    </div>
+    @if(user().department) {
+      <div class="dpm">
+        Bộ phận: {{ user().department?.name }}
+      </div>
+    }
+  </div>
+  <div class="role">{{ user().role }}</div>
+</a>

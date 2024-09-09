@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-12">
+    <button (click)="onAddEmployee()" class="btn btn-success">Thêm</button>
+  </div>
+
+  <div class="col-12">
+    <ul class="user">
+      @for (user of users(); track user.id) {
+        <li>
+          <app-employee-item [user]="user"/>
+        </li>
+      }
+    </ul>
+  </div>
+</div>
