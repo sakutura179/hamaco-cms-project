@@ -43,7 +43,7 @@ export const DUMMY_USERS: User[] = [
   },
   {
     id: 5,
-    username: 'ADMIN',
+    username: 'LNTHO',
     fullname: 'Lê Ngọc Thơ',
     role: 'admin'
   }
