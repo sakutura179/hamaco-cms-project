@@ -1,16 +1,16 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
-import { FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
-import { DepartmentService } from '../../department/department.service';
-import { Department, User } from '../../../shared/models/data.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Params } from '@angular/router';
 import { map, Observable, of } from 'rxjs';
+import { Department, User } from '../../../shared/models/data.model';
+import { DepartmentService } from '../../department/department.service';
 import { EmployeeService } from '../employee.service';
 
 @Component({
   selector: 'app-employee-edit',
   templateUrl: './employee-edit.component.html',
-  styleUrl: './employee-edit.component.scss'
+  styleUrl: './employee-edit.component.scss',
 })
 export class EmployeeEditComponent implements OnInit {
   id: number | undefined;
@@ -22,23 +22,19 @@ export class EmployeeEditComponent implements OnInit {
   departments$: Observable<Department[]> = of([]);
   private destroyRef = inject(DestroyRef);
 
-  constructor(
-    private route: ActivatedRoute,
-  ) {
-  }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
-      this.editMode = params['id'] != null;
+      this.editMode = !!this.id;
+
+      this.initForm();
     });
 
-    this.departments$ = this.departmentService.getAllDepartments()
-      .pipe(
-        takeUntilDestroyed(this.destroyRef)
-      )
-
-    this.initForm();
+    this.departments$ = this.departmentService
+      .getAllDepartments()
+      .pipe(takeUntilDestroyed(this.destroyRef));
   }
 
   private initForm() {
@@ -46,41 +42,34 @@ export class EmployeeEditComponent implements OnInit {
     let userName = '';
     let department = 0;
 
-    if(this.editMode && this.id) {
+    this.employeeForm = new FormGroup({
+      fullname: new FormControl(fullName, Validators.required),
+      username: new FormControl(userName, Validators.required),
+      department: new FormControl(department, Validators.required),
+    });
+
+    if (this.editMode && this.id) {
       console.log('edit');
       this.getEmployeeById(this.id).subscribe((user) => {
         this.selectedUser = user;
         // console.log(this.selectedUser);
         fullName = this.selectedUser?.fullname ?? '';
-        userName = this.selectedUser?.username!;
+        userName = this.selectedUser?.username ?? '';
         department = this.selectedUser?.department?.id ?? 1;
         console.log(fullName, userName, department);
-      })
+
+        this.employeeForm.get('fullname')?.setValue(fullName);
+        this.employeeForm.get('username')?.setValue(userName);
+        this.employeeForm.get('department')?.setValue(department);
+      });
     }
-
-    console.log(fullName, userName, department);
-
-    this.employeeForm = new FormGroup({
-      'fullname': new FormControl(fullName, Validators.required),
-      'username': new FormControl(userName, Validators.required),
-      'department': new FormControl(department, Validators.required)
-    })
   }
 
-  getEmployeeById(id: number): Observable<User> {
+  getEmployeeById(id: number): Observable<User | undefined> {
     return this.employeeService.getAllEmployees().pipe(
-      map((response: User[]) => {
-        const employeeArray = Object.values(response);
-        return employeeArray.map((employee: any) => ({
-          id: employee.id,
-          username: employee.username,
-          fullname: employee.fullname,
-          department: employee.department
-          ? { id: employee.department.id, name: employee.department.name }
-          : undefined
-        }))
-        .find((u) => u.id === id);
+      map((employeeArray: User[]) => {
+        return employeeArray.find((employee) => employee.id === id);
       })
-    )
+    );
   }
 }
