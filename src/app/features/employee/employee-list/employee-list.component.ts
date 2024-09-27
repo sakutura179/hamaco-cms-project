@@ -6,6 +6,7 @@ import { EmployeeService } from '../employee.service';
 import { catchError, map } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { LoadingService } from '../../../shared/components/loading/loading.service';
+import { DepartmentService } from '../../department/department.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -22,6 +23,7 @@ export class EmployeeListComponent implements OnInit {
   // users = signal(DUMMY_USERS);
   private employeesService = inject(EmployeeService);
   private loadingService = inject(LoadingService);
+  private departmentService = inject(DepartmentService);
 
   users = signal<User[]>([]);
 
@@ -52,11 +54,14 @@ export class EmployeeListComponent implements OnInit {
     )
     .subscribe(
       (mappedUsers) => {
-        console.log(mappedUsers);
+        // console.log(mappedUsers);
         this.users.set(mappedUsers);
         this.loadingService.hide();
       }
     );
+
+    this.departmentService.getAllDepartments();
+    // console.log(this.departmentService.loadDepartments());
   }
 
   onAddEmployee() {

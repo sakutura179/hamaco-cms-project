@@ -4,3 +4,38 @@
 @else {
   <p>Tạo mới nhân viên</p>
 }
+<!-- @for (d of departments$ | async; track d.id) {
+  <div>{{ d.name }}</div>
+} -->
+<div class="row">
+  <div class="col-12">
+    <form [formGroup]="employeeForm">
+      <app-input label="Họ tên" class="default-bg">
+        <input
+          placeholder="Họ tên"
+          type="text"
+          name="fullname"
+          formControlName="fullname">
+      </app-input>
+
+      <app-input label="Tên đăng nhập" class="default-bg">
+        <input
+          placeholder="Tên đăng nhập"
+          type="text"
+          name="username"
+          formControlName="username">
+      </app-input>
+
+      <app-input label="Phòng ban" class="default-bg">
+        <select name="department" id="department" formControlName="department">
+          <option value="0" disabled>Phòng ban</option>
+          @for (department of departments$ | async; track department.id) {
+            <option [value]="department.id">
+              {{ department.name }}
+            </option>
+          }
+        </select>
+      </app-input>
+    </form>
+  </div>
+</div>

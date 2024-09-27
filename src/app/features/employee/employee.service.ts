@@ -11,7 +11,7 @@ import { API_URL } from "../../shared/env/env";
 export class EmployeeService {
   constructor(private http: HttpClient) {}
 
-  getAllEmployees(): Observable<any> {
+  getAllEmployees(): Observable<User[]> {
     return this.http.get<User[]>(API_URL + 'employees.json');
   }
 
