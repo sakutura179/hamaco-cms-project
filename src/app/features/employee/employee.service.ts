@@ -9,16 +9,34 @@ import { User, UserResponse } from '../../shared/models/data.model';
 })
 export class EmployeeService {
   constructor(private http: HttpClient) {}
+  private allEmployees: User[] = [];
 
   getAllEmployees(): Observable<User[]> {
     return this.http.get<UserResponse>(API_URL + 'employees.json').pipe(
       map((userResponse: UserResponse) => {
-        return Object.values(userResponse);
+        this.allEmployees = Object.values(userResponse);
+        return this.allEmployees;
       })
     );
   }
 
   addEmployee(employee: User) {
-    console.log(employee);
+    employee.id = this.allEmployees.length + 1;
+    this.allEmployees.push(employee);
+    this.updateEmployeeList(this.allEmployees).subscribe();
+  }
+
+  updateEmployee(id: number, employee: User) {
+    this.allEmployees[id-1] = employee;
+    this.updateEmployeeList(this.allEmployees).subscribe();
+  }
+
+  updateEmployeeList(users: User[]): Observable<User[]> {
+    return this.http.put<UserResponse>(API_URL + 'employees.json', users)
+    .pipe(
+      map((userResponse: UserResponse) => {
+        return Object.values(userResponse);
+      })
+    )
   }
 }

@@ -65,11 +65,38 @@ export class EmployeeEditComponent implements OnInit {
     }
   }
 
-  getEmployeeById(id: number): Observable<User | undefined> {
+  private getEmployeeById(id: number): Observable<User | undefined> {
     return this.employeeService.getAllEmployees().pipe(
       map((employeeArray: User[]) => {
         return employeeArray.find((employee) => employee.id === id);
       })
     );
+  }
+
+  onSubmit() {
+    const formValue = this.employeeForm.value;
+    let userDepartment: Department | undefined;
+    this.departments$.subscribe((departments) => {
+      userDepartment = departments.find((department) => department.id == formValue['department']);
+      const newEmployee: User = {
+        id: (this.editMode && this.id) ? this.id : 0,
+        username: formValue['username'],
+        fullname: formValue['fullname'],
+        role: 'user',
+        department: userDepartment
+      }
+
+      if(this.editMode && this.id) {
+        this.employeeService.updateEmployee(this.id, newEmployee);
+      } else {
+        this.employeeService.addEmployee(newEmployee);
+      }
+
+      this.employeeForm.reset();
+    });
+  }
+
+  isFormChanged(): boolean {
+    return this.employeeForm.dirty;
   }
 }

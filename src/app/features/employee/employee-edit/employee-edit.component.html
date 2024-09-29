@@ -1,12 +1,9 @@
 @if (editMode) {
-  <p>Edit nhân viên id: {{id}}</p>
+  <p>Sửa thông tin nhân viên: <b> {{selectedUser?.fullname}} </b> </p>
 }
 @else {
-  <p>Tạo mới nhân viên</p>
+  <p><b>Tạo mới nhân viên</b></p>
 }
-<!-- @for (d of departments$ | async; track d.id) {
-  <div>{{ d.name }}</div>
-} -->
 <div class="row">
   <div class="col-12">
     <form [formGroup]="employeeForm">
@@ -36,6 +33,13 @@
           }
         </select>
       </app-input>
+      <button
+        style="width: 100%;"
+        class="btn btn-success"
+        [disabled]="!employeeForm.valid"
+        (click)="onSubmit()">
+        {{editMode ? 'Lưu' : 'Thêm'}}
+      </button>
     </form>
   </div>
 </div>

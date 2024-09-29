@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { EmployeeComponent } from "./employee.component";
 import { InitViewComponent } from "../../shared/components/init-view/init-view.component";
 import { EmployeeEditComponent } from "./employee-edit/employee-edit.component";
+import { canDeactiveEditEmployeeComponent } from "./employee-edit/can-deactivate.guard";
 
 const routes: Routes = [
  {
@@ -18,11 +19,13 @@ const routes: Routes = [
     },
     {
       path: 'new',
-      component: EmployeeEditComponent
+      component: EmployeeEditComponent,
+      canDeactivate: [canDeactiveEditEmployeeComponent]
     },
     {
       path: ':id/edit',
-      component: EmployeeEditComponent
+      component: EmployeeEditComponent,
+      canDeactivate: [canDeactiveEditEmployeeComponent]
     }
   ]
  }

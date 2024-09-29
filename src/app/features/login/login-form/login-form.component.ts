@@ -12,6 +12,7 @@ export class LoginFormComponent {
   private form = viewChild.required<NgForm>('loginForm');
   private destroyRef = inject(DestroyRef);
   private router = inject(Router);
+  isLogin = false;
 
   constructor() {
     //this function is executed once the component has been rendered for the first time
@@ -45,6 +46,7 @@ export class LoginFormComponent {
     console.log(formData.form.value.email);
     console.log(formData.form.value.password);
     formData.form.reset();
-    this.router.navigate(['/supply'])
+    this.router.navigate(['/supply']);
+    this.isLogin = true;
   }
 }
