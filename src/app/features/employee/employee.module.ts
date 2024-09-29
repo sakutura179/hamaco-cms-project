@@ -5,17 +5,27 @@ import { AdminMenuComponent } from "../../shared/components/admin-menu/admin-men
 import { EmployeeListComponent } from "./employee-list/employee-list.component";
 import { EmployeeItemComponent } from "./employee-item/employee-item.component";
 import { LoadingComponent } from "../../shared/components/loading/loading.component";
+import { EmployeeEditComponent } from "./employee-edit/employee-edit.component";
+import { AsyncPipe } from "@angular/common";
+import { InputComponent } from "../../shared/components/input/input.component";
+import { ReactiveFormsModule } from "@angular/forms";
+import { DropdownModule } from "primeng/dropdown";
 
 @NgModule({
   declarations: [
     EmployeeComponent,
     EmployeeListComponent,
-    EmployeeItemComponent
+    EmployeeItemComponent,
+    EmployeeEditComponent
   ],
   imports: [
     EmployeeRoutingModule,
     AdminMenuComponent,
-    LoadingComponent
+    LoadingComponent,
+    AsyncPipe,
+    InputComponent,
+    ReactiveFormsModule,
+    DropdownModule
   ]
 })
 
